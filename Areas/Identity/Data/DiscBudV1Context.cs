@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using DiscBudV1.Models;
 
 namespace DiscBudV1.Data;
 
@@ -19,4 +20,6 @@ public class DiscBudV1Context : IdentityDbContext<DiscBudV1User>
         // For example, you can rename the ASP.NET Identity table names and more.
         // Add your customizations after calling base.OnModelCreating(builder);
     }
+
+    public DbSet<DiscBudV1.Models.Disc>? Discs { get; set; }
 }
