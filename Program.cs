@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using DiscBudV1.Areas.Identity.Data;
 
 namespace DiscBudV1 { 
-    public class program {
+    public class Program {
         public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
