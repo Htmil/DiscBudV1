@@ -5,14 +5,16 @@
 @using DiscBudV1.Models
 @using Microsoft.AspNetCore.Mvc
  
-@model IEnumerable<DiscBudV1.Models.Disc>
 
+@model List<DiscBudV1.Models.Disc>
+@* @attribute [AllowAnonymous] *@
 @{
-    ViewData["Title"] = "Discs";
+    ViewData["Title"] = "AllDiscs";
 }
 
-<div class="container py-5">
-    <h1 class="mb-3">Disc Manager</h1>
+
+<div class="container">
+    <h1 class="mb-3">All discs</h1>
     <form id="searchForm" class="mb-3">
         <div class="form-group mr-2 mb-3">
             <input type="text"
@@ -22,68 +24,56 @@
         </div>
         <div id="filterButtons" class="btn-group" role="group" aria-label="Filter by type">
             <button type="button" class="btn btn-outline-primary filter-btn" data-type="all">All</button>
-            <button type="button" class="btn btn-outline-primary filter-btn" data-type="driver">Driver</button>
-            <button type="button" class="btn btn-outline-primary filter-btn" data-type="midrange">Midrange</button>
-            <button type="button" class="btn btn-outline-primary filter-btn" data-type="putter">Putter</button>
+            <button type="button" class="btn btn-outline-primary filter-btn" data-type="Driver">Driver</button>
+            <button type="button" class="btn btn-outline-primary filter-btn" data-type="Midrange">Midrange</button>
+            <button type="button" class="btn btn-outline-primary filter-btn" data-type="Putter">Putter</button>
             <!-- Add more buttons as needed for each disc type -->
         </div>
     </form>
-    @if (User.IsInRole("Admin"))                   
-    {
-    <p>
-        <a asp-action="Create" class="btn btn-primary">Create New Disc</a>
-    </p>
-    }
+@*     <p>
+        <a asp-action="Create" class="btn btn-primary">Create New</a>
+    </p> *@
     <div class="row" id="discsContainer">
-        @foreach (var item in Model)
+        @foreach (var disc in Model)
         {
-            <div class="col-md-4 col-sm-6 mb-4 disc-item" data-type="@item.Type.ToLower()">
+            <div class="col-md-4 col-sm-6 mb-4 disc-item" data-type="@disc.Type">
                 <div class="card disc-card">
                     <div class="card-body">
                         <h5 class="card-title">
-                            @Html.DisplayFor(modelItem => item.Name)
-                            @if (item.Characteristics.Contains("Stable"))
+                            @disc.Name
+
+                            @if (disc.Characteristics.Contains("Stable"))
                             {
                                 <span>&#x2191;</span> <!-- Up arrow for stable discs -->
                             }
-                            else if (item.Characteristics.Contains("Overstable") || item.Characteristics.Contains("Slightly overstable"))
+                            else if (disc.Characteristics.Contains("Overstable") || disc.Characteristics.Contains("Slightly overstable"))
                             {
                                 <span>&#x2192;</span> <!-- Right arrow for overstable discs -->
                             }
-                            else if (item.Characteristics.Contains("Understable") || item.Characteristics.Contains("Slightly understable"))
+                            else if (disc.Characteristics.Contains("Understable") || disc.Characteristics.Contains("Slightly understable"))
                             {
                                 <span>&#x2190;</span> <!-- Left arrow for understable discs -->
                             }
                         </h5>
                         <p class="card-text">
                             <!-- Display basic information here -->
-                            @Html.DisplayFor(modelItem => item.Speed) / @Html.DisplayFor(modelItem => item.Glide) / @Html.DisplayFor(modelItem => item.Turn) / @Html.DisplayFor(modelItem => item.Fade)
+                            @disc.Speed / @disc.Glide / @disc.Turn / @disc.Fade
                         </p>
                         <!-- Toggle button for details -->
-                        <div class="d-flex">
-                            <button class="btn btn-info btn-sm toggle-details" data-toggle="collapse" data-target="#details-@item.Id">Details</button>
-                            <!-- Edit and Delete buttons -->
-                            @if (User.IsInRole("Admin"))
-                            {
-                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary btn-sm">Edit</a>
-                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
-                            }
-                            <form action="@Url.Action("AddDiscToInv", "Invdiscs")" method="post">
-                                <input type="hidden" name="discId" value="@item.Id" />
-                                <button type="submit" class="btn btn-success btn-sm">Add to inv</button>
-                            </form>
-                            @* <a class="btn btn-danger btn-sm">Remove from inv</a> *@
-                            </div>
+                        <button class="btn btn-info btn-sm toggle-details" data-toggle="collapse" data-target="#details-@disc.Id">Details</button>
+                        <!-- Edit and Delete buttons -->
+@*                         <!-- <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary btn-sm">Edit</a> -->
+                        <!-- <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a> --> *@
                     </div>
                     <!-- Details section (initially collapsed) -->
-                    <div class="card-footer collapse" id="details-@item.Id">
-                        <p><strong>Manufacturer:</strong> @Html.DisplayFor(modelItem => item.Manufacturer)</p>
-                        <p><strong>Type:</strong> @Html.DisplayFor(modelItem => item.Type)</p>
-                        <p><strong>Characteristics:</strong> @Html.DisplayFor(modelItem => item.Characteristics)</p>
+                    <div class="card-footer collapse" id="details-@disc.Id">
+                        <p><strong>Manufacturer:</strong> @disc.Manufacturer</p>
+                        <p><strong>Type:</strong> @disc.Type</p>
+                        <p><strong>Characteristics:</strong> @disc.Characteristics</p>
                     </div>
                 </div>
             </div>
-        }
+        } 
     </div>
 </div>
 
@@ -147,3 +137,6 @@
         });
     </script>
 }
+
+
+

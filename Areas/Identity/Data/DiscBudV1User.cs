@@ -11,5 +11,7 @@ namespace DiscBudV1.Areas.Identity.Data;
 public class DiscBudV1User : IdentityUser
 {
     public List<Disc> Discs { get; set; }
+    public List<Invdisc> invdiscs { get; set; }
+    public List<Bag> Bags { get; set; }
 }
 

@@ -1,13 +1,41 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@using DiscBudV1.Areas.Identity.Data
+
+@inject SignInManager<DiscBudV1User> SignInManager
+@inject UserManager<DiscBudV1User> UserManager
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-<div>
-    <p>
-        <a href="@Url.Action("Create", "Discs")" type="button" class="btn btn-info m-1 p-1">Add your Discs</a>
-    </p>
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-6 d-flex align-items-center">
+            <div>
+                <h1 class="display-4 fw-bold">Mastering Disc Golf Made Simple</h1>
+                <p class="lead">
+                    Disc golf, much like traditional golf, can be a challenging sport to master, especially for beginners. The game requires a variety of discs, each designed for specific wind conditions and distances. From putters and midrange discs to fairway drivers and distance drivers, each type has unique flight characteristics.
+                </p>
+                <p>
+                    As players develop their skills, they often accumulate a large collection of discs, even finding that discs of the same type can behave differently. This abundance of options can make selecting the right disc a confusing task.
+                </p>
+                <p>
+                    Our app is here to simplify the selection process. Whether you're a novice or a seasoned player, our tool will help you choose the perfect disc for every shot. Say goodbye to the confusion and enjoy a more streamlined disc golf experience with our app.
+                </p>
+                <div>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <a href="@Url.Action("Index", "Invdiscs")" class="btn btn-ctf me-2">My Inventory</a>
+                        <a href="@Url.Action("Index", "Bags")" class="btn btn-ctf">The Bag</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Page("/Account/Register", new { area = "Identity" })" class="btn btn-ctf me-2">Register</a>
+                    }
+       
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 rounded shadow" style="background-image: url('@Url.Content("~/images/Bag.jpg")'); background-size: cover; background-position: center; background-size:cover; background-repeat:no-repeat; display:flex; align-items:center; justify-content:center;">
+        </div>
+    </div>
 </div>

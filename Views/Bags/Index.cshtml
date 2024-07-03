@@ -1,0 +1,62 @@
+﻿@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment WebHostEnvironment
+
+@using Microsoft.EntityFrameworkCore
+@using DiscBudV1.Controllers
+@using DiscBudV1.Models
+@using Microsoft.AspNetCore.Mvc
+
+@model List<DiscBudV1.ViewModels.BagDashboardViewModel>
+@* @model IEnumerable<DiscBudV1.Models.Bag> *@
+@* @model IEnumerable<DiscBudV1.Models.Invdisc> *@
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @* @Html.DisplayNameFor(item => item.User) *@
+                User Id
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(item => item.Invdisc) *@
+                Disc Name
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @* @Html.DisplayFor(modelItem => item.BagId) *@
+                @item.Bag.UserId
+            </td>
+            <td>
+                @* @Html.DisplayFor(modelItem => item.BagId) *@
+                @item.Disc?.Name
+                @item.Disc?.Glide
+            </td> 
+                <td>
+                  @*   @Html.DisplayFor(modelItem => item.Invdisc) *@
+                </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Bag.BagId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Bag.BagId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Bag.BagId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table> 

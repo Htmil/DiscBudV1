@@ -4,6 +4,7 @@ using DiscBudV1.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DiscBudV1.Migrations
 {
     [DbContext(typeof(DiscBudV1Context))]
-    partial class DiscBudV1ContextModelSnapshot : ModelSnapshot
+    [Migration("20240627110132_CreatedInventoryTable")]
+    partial class CreatedInventoryTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,29 +90,6 @@ namespace DiscBudV1.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("DiscBudV1.Models.Bag", b =>
-                {
-                    b.Property<int?>("BagId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("BagId"));
-
-                    b.Property<int>("InvdiscId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("BagId");
-
-                    b.HasIndex("InvdiscId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Bags");
-                });
-
             modelBuilder.Entity("DiscBudV1.Models.Disc", b =>
                 {
                     b.Property<int>("Id")
@@ -173,7 +153,7 @@ namespace DiscBudV1.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("invdiscs");
+                    b.ToTable("Invdisc");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -313,23 +293,6 @@ namespace DiscBudV1.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("DiscBudV1.Models.Bag", b =>
-                {
-                    b.HasOne("DiscBudV1.Models.Invdisc", "Invdisc")
-                        .WithMany()
-                        .HasForeignKey("InvdiscId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DiscBudV1.Areas.Identity.Data.DiscBudV1User", "User")
-                        .WithMany("Bags")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Invdisc");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("DiscBudV1.Models.Disc", b =>
                 {
                     b.HasOne("DiscBudV1.Areas.Identity.Data.DiscBudV1User", "User")
@@ -411,8 +374,6 @@ namespace DiscBudV1.Migrations
 
             modelBuilder.Entity("DiscBudV1.Areas.Identity.Data.DiscBudV1User", b =>
                 {
-                    b.Navigation("Bags");
-
                     b.Navigation("Discs");
 
                     b.Navigation("invdiscs");

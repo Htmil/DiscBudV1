@@ -22,4 +22,6 @@ public class DiscBudV1Context : IdentityDbContext<DiscBudV1User>
     }
 
     public DbSet<DiscBudV1.Models.Disc>? Discs { get; set; }
+    public DbSet<DiscBudV1.Models.Invdisc>? invdiscs { get; set; }
+    public DbSet<DiscBudV1.Models.Bag>? Bags { get; set; }
 }
