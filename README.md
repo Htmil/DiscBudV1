@@ -10,6 +10,7 @@ This app is here to simplify the selection process. Whether you're a novice or a
 Say goodbye to the confusion and enjoy a more streamlined disc golf experience with our app.
 
 This project was developed as part of an advanced postgraduate training course in Information Technology at Lexicon.
+A big thank you to [Maged.H](https://github.com/MG777777) for guiding me through this project, helping with databases, explaining, resolving issiues and making it possible for me to successfully complete the project.”
 
 ## Features
 
