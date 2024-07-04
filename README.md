@@ -11,6 +11,8 @@ Say goodbye to the confusion and enjoy a more streamlined disc golf experience w
 
 This project was developed as part of an advanced postgraduate training course in Information Technology at Lexicon.
 
+A big thank you to [Maged.H](https://github.com/MG777777) for guiding me through this project, helping me with databases, explaining, resolving issiues and making it possible for me to successfully complete the project.
+
 ## Features
 
 - **Register**: Create user on the website.
@@ -30,4 +32,22 @@ This project was developed as part of an advanced postgraduate training course i
 - Bootstrap
 - HTML & CSS
 
+## Installation
 
+1. **Clone the Repository**
+   ```sh
+   git clone https://github.com/Htmil/DiscBudV1.git
+2. **Install NuGet Packages**
+  Install the required NuGet packages using the .NET CLI
+  ```sh
+  dotnet add package Microsoft.EntityFrameworkCore
+  dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+  dotnet add package Microsoft.EntityFrameworkCore.Tools
+  ```
+3. **Setup Database**
+  Update the connection string in MyDbContext.cs to point to your database.
+
+5. **Run the Application**
+  ```sh
+  dotnet run
+  ```
