@@ -32,4 +32,23 @@ A big thank you to [Maged.H](https://github.com/MG777777) for guiding me through
 - Bootstrap
 - HTML & CSS
 
+## Installation
 
+1. **Clone the Repository**
+   ```sh
+   git clone https://github.com/Htmil/DiscBudV1.git
+   cd asset-tracker
+2. **Install NuGet Packages**
+  Install the required NuGet packages using the .NET CLI
+  ```sh
+  dotnet add package Microsoft.EntityFrameworkCore
+  dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+  dotnet add package Microsoft.EntityFrameworkCore.Tools
+  ```
+3. **Setup Database**
+  Update the connection string in MyDbContext.cs to point to your database.
+
+5. **Run the Application**
+  ```sh
+  dotnet run
+  ```
