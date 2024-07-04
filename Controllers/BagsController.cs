@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DiscBudV1.Areas.Identity.Data;
+using DiscBudV1.Data;
+using DiscBudV1.Models;
+using DiscBudV1.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using DiscBudV1.Data;
-using DiscBudV1.Models;
-using DiscBudV1.Areas.Identity.Data;
-using DiscBudV1.ViewModels;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 
 namespace DiscBudV1.Controllers
@@ -51,43 +47,43 @@ namespace DiscBudV1.Controllers
         }
 
 
-    //public async Task<IActionResult> Index()
-    //{
-    //    var invdiscs = _context.invdiscs.ToList();
-    //    var discs = _context.Discs.ToList();
-    //    var bags = _context.Bags.ToList();
-    //    var models = new List<Tuple<Invdisc, Disc, Bag>>();
+        //public async Task<IActionResult> Index()
+        //{
+        //    var invdiscs = _context.invdiscs.ToList();
+        //    var discs = _context.Discs.ToList();
+        //    var bags = _context.Bags.ToList();
+        //    var models = new List<Tuple<Invdisc, Disc, Bag>>();
 
-    //    var discBudV1Context = _context.Bags.Include(b => b.Invdisc).Include(b => b.User);
-    //    return View(await discBudV1Context.ToListAsync());
-
-
-    //}
-    //    public IActionResult Index()
-    //    {
-
-    //        var invdiscs = _context.Invdiscs.ToList();
-    //        var discs = _context.Discs.ToList();
-    //        var bags = _context.Bags.ToList();
-    //        var models = new List<Tuple<Invdisc, Disc, Bag>>();
-
-    //        foreach (var invdisc in invdiscs)
-    //        {
-    //            var disc = discs.FirstOrDefault(d => d.Id == invdisc.DiscId);
-    //            var bag = bags.FirstOrDefault(b => b.Id == invdisc.BagId);
-
-    //            if (disc != null && bag != null)
-    //            {
-    //                models.Add(Tuple.Create(invdisc, disc, bag));
-    //            }
-    //        }
-
-    //        return View(models);
-    //    }
-    //}
+        //    var discBudV1Context = _context.Bags.Include(b => b.Invdisc).Include(b => b.User);
+        //    return View(await discBudV1Context.ToListAsync());
 
 
-    public async Task<IActionResult> AddDiscToBag(int invdiscId)
+        //}
+        //    public IActionResult Index()
+        //    {
+
+        //        var invdiscs = _context.Invdiscs.ToList();
+        //        var discs = _context.Discs.ToList();
+        //        var bags = _context.Bags.ToList();
+        //        var models = new List<Tuple<Invdisc, Disc, Bag>>();
+
+        //        foreach (var invdisc in invdiscs)
+        //        {
+        //            var disc = discs.FirstOrDefault(d => d.Id == invdisc.DiscId);
+        //            var bag = bags.FirstOrDefault(b => b.Id == invdisc.BagId);
+
+        //            if (disc != null && bag != null)
+        //            {
+        //                models.Add(Tuple.Create(invdisc, disc, bag));
+        //            }
+        //        }
+
+        //        return View(models);
+        //    }
+        //}
+
+
+        public async Task<IActionResult> AddDiscToBag(int invdiscId)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _userManager.FindByIdAsync(userId);

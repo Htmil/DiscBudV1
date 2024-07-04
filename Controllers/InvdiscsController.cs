@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DiscBudV1.Areas.Identity.Data;
+using DiscBudV1.Data;
+using DiscBudV1.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using DiscBudV1.Data;
-using DiscBudV1.Models;
-using DiscBudV1.Areas.Identity.Data;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 
 namespace DiscBudV1.Controllers
@@ -85,14 +81,14 @@ namespace DiscBudV1.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _userManager.FindByIdAsync(userId);
 
-                var invDiscId = new Invdisc
-                {
-                    UserId = userId,
-                    DiscId = discId
-                };
+            var invDiscId = new Invdisc
+            {
+                UserId = userId,
+                DiscId = discId
+            };
 
-                _context.invdiscs.Add(invDiscId);
-                _context.SaveChanges();
+            _context.invdiscs.Add(invDiscId);
+            _context.SaveChanges();
 
             //return View("Index");
             return RedirectToAction(nameof(Index));

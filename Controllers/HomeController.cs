@@ -27,7 +27,7 @@ namespace DiscBudV1.Controllers
         public async Task<ActionResult> AllDiscs()
         {
             var discs = from n in _context.Discs select n;
-            List < Disc > discList = await discs.ToListAsync();
+            List<Disc> discList = await discs.ToListAsync();
             return View(discList);
         }
 
