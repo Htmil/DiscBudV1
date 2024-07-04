@@ -14,8 +14,8 @@
     ViewData["Title"] = "Index";
 }
 
-<div class="container py-5">
-    <h1 class="mb-3">Inventory</h1>
+<div class="container p-5 mainContainer ">
+    <h1 class="fw-bold mb-3">Inventory</h1>
     <form id="searchForm" class="mb-3">
         <div class="form-group mr-2 mb-3">
             <input type="text"
@@ -30,73 +30,60 @@
             <button type="button" class="btn btn-outline-primary filter-btn" data-type="putter">Putter</button>
         </div>
     </form>
-@if (User.IsInRole("Admin"))
-{
-<p>
-    <a asp-action="Create" class="btn btn-sm btn-primary">Create New</a>
-</p>
-}
-@* <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Disc)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody> *@
-
-<div class="row" id="discsContainer">
-    @foreach (var item in Model) {
-       <div class="col-md-4 col-sm-6 mb-4 disc-item" data-type="@item.Disc.Type.ToLower()">
-           <div class="card disc-card">
-               <div class="card-body">
-                   <h5 class="card-title">
-                        @Html.DisplayFor(modelItem => item.Disc.Name)
-                        @if (item.Disc.Characteristics.Contains("Stable"))
-                        {
-                            <span>&#x2191;</span> <!-- Up arrow for stable discs -->
-                        }
-                        else if (item.Disc.Characteristics.Contains("Overstable") || item.Disc.Characteristics.Contains("Slightly overstable"))
-                        {
-                            <span>&#x2192;</span> <!-- Right arrow for overstable discs -->
-                        }
-                        else if (item.Disc.Characteristics.Contains("Understable") || item.Disc.Characteristics.Contains("Slightly understable"))
-                        {
-                            <span>&#x2190;</span> <!-- Left arrow for understable discs -->
-                        }
-                   </h5>
-                   <p class="card-text">
-                       <!-- Display basic information here -->
-                       @Html.DisplayFor(modelItem => item.Disc.Speed) / @Html.DisplayFor(modelItem => item.Disc.Glide) / @Html.DisplayFor(modelItem => item.Disc.Turn) / @Html.DisplayFor(modelItem => item.Disc.Fade)
-                   </p>
-                    <!-- Toggle button for details -->
-                   <div class="d-flex">
-                       <button class="btn btn-info btn-sm toggle-details" data-toggle="collapse" data-target="#details-@item.Disc.Id">Details</button>
-                       <form action="@Url.Action("AddDiscToBag", "Bags")" method="post">
-                           <input type="hidden" name="invdiscId" value="@item.Id" />
-                           <button type="submit" class="btn btn-success btn-sm">
-                               <i class="fa-solid fa-plus"></i>
-                               Bag
-                           </button>
-                       </form>
-                       <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">
-                                <i class="fa-solid fa-trash-can"></i>
-                       </a>
+    @if (User.IsInRole("Admin"))
+    {
+    <p>
+        <a asp-action="Create" class="btn btn-sm btn-primary">Create New</a>
+    </p>
+    }
+    <div class="row" id="discsContainer">
+        @foreach (var item in Model) {
+           <div class="col-md-4 col-sm-6 mb-4 disc-item" data-type="@item.Disc.Type.ToLower()">
+               <div class="card disc-card">
+                   <div class="card-body">
+                       <h5 class="card-title">
+                            @Html.DisplayFor(modelItem => item.Disc.Name)
+                            @if (item.Disc.Characteristics.Contains("Stable"))
+                            {
+                                <i class="fa-solid fa-arrow-up-long" style="color: #03b0d2; scale:0.8;"></i> <!-- Up arrow for stable discs -->
+                            }
+                            else if (item.Disc.Characteristics.Contains("Overstable") || item.Disc.Characteristics.Contains("Slightly overstable"))
+                            {
+                                <i class="fa-solid fa-arrow-right-long" style="color: #03b0d2; scale:0.8;"></i> <!-- Right arrow for overstable discs -->
+                            }
+                            else if (item.Disc.Characteristics.Contains("Understable") || item.Disc.Characteristics.Contains("Slightly understable"))
+                            {
+                                <i class="fa-solid fa-arrow-left-long" style="color: #03b0d2; scale:0.8;"></i> <!-- Left arrow for understable discs -->
+                            }
+                       </h5>
+                       <p class="card-text">
+                           <!-- Display basic information here -->
+                           @Html.DisplayFor(modelItem => item.Disc.Speed) / @Html.DisplayFor(modelItem => item.Disc.Glide) / @Html.DisplayFor(modelItem => item.Disc.Turn) / @Html.DisplayFor(modelItem => item.Disc.Fade)
+                       </p>
+                        <!-- Toggle button for details -->
+                       <div class="d-flex">
+                           <button class="btn btn-info btn-sm toggle-details" data-toggle="collapse" data-target="#details-@item.Disc.Id">Details</button>
+                           <form action="@Url.Action("AddDiscToBag", "Bags")" method="post">
+                               <input type="hidden" name="invdiscId" value="@item.Id" />
+                               <button type="submit" class="btn btn-success btn-sm">
+                                   <i class="fa-solid fa-plus"></i>
+                                   Bag
+                               </button>
+                           </form>
+                           <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">
+                                    <i class="fa-solid fa-trash-can"></i>
+                           </a>
+                       </div>
+                   </div>
+                   <div class="card-footer collapse" id="details-@item.Disc.Id">
+                       <p><strong>Manufacturer:</strong> @Html.DisplayFor(modelItem => item.Disc.Manufacturer)</p>
+                       <p><strong>Type:</strong> @Html.DisplayFor(modelItem => item.Disc.Type)</p>
+                       <p><strong>Characteristics:</strong> @Html.DisplayFor(modelItem => item.Disc.Characteristics)</p>
                    </div>
                </div>
-               <div class="card-footer collapse" id="details-@item.Disc.Id">
-                   <p><strong>Manufacturer:</strong> @Html.DisplayFor(modelItem => item.Disc.Manufacturer)</p>
-                   <p><strong>Type:</strong> @Html.DisplayFor(modelItem => item.Disc.Type)</p>
-                   <p><strong>Characteristics:</strong> @Html.DisplayFor(modelItem => item.Disc.Characteristics)</p>
-               </div>
            </div>
-       </div>
-    }
+        }
+    </div>
 </div>
 
     @section scripts {
@@ -159,26 +146,3 @@
             });
         </script>
     }
-
-@*       
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.User.Id)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Disc.Id)
-    </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Disc.Name)
-        </td>
-    <td>
-        <form action="@Url.Action("AddDiscToBag", "Bags")" method="post">
-            <input type="hidden" name="invdiscId" value="@item.Id" />
-            <button type="submit" class="btn btn-success btn-sm">Add to inv</button>
-        </form>
-        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-    </td>
-</tr> 
-*@

@@ -18,8 +18,16 @@ html {
 }
 
 body {
-    margin-bottom: 60px;
-    background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+    margin-bottom: 100px;
+    /*    background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);*/
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed
+}
+main {
+    /*background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);*/
+    background-image: linear-gradient(135deg, #fff 0%, #9aaea3d6 100%);
 }
 
 .navBg {
@@ -30,5 +38,18 @@ body {
 .btn-ctf {
     background: #237A57;
     color:white;
+}
+.mainContainer{
+    min-height: 60vh;
+    max-height:70vh;
+    overflow-y: scroll;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+}
+.mainContainer::-webkit-scrollbar {
+     display:none;
+}
+    footer {
+    line-height: 0;
 }
 

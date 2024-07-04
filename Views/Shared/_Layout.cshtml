@@ -12,9 +12,9 @@
     <link rel="stylesheet" href="~/DiscBudV1.styles.css" asp-append-version="true" />
     <script src="https://kit.fontawesome.com/a37d840623.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body style="background-image: url('@Url.Content("~/images/BackgroundImage.jpg")');">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light navBg border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark navBg box-shadow mb-5">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     <img src="~/images/logo.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top" />
@@ -25,9 +25,6 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-@*                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li> *@
                         @if (!SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
@@ -53,14 +50,18 @@
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="py-3 rounded">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - DiscBudV1 -
+    <footer class="footer text-light navBg pt-3 mt-3">
+        <div class="container d-flex justify-content-between">
+            <p>&copy; 2024 - DiscBud - </p> 
+            <div class="d-inline-flex">
+            <a href="https://github.com/Htmil/DiscBudV1" target="_blank"><i class="fa-brands fa-github" style="font-size: 1.5rem; color: white; margin-right:.5rem;"></i></a> 
+            <a href="https://linkedin.com/in/emil-cederslätt" target="_blank"><i class="fa-brands fa-linkedin" style="font-size: 1.5rem; color: white;"></i></a>
+            </div>
         </div>
     </footer>
 
