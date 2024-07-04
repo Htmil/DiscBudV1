@@ -27,8 +27,6 @@ namespace DiscBudV1 {
                 options.Password.RequiredLength = 4;
                 options.Password.RequiredUniqueChars = 0;
             });
-            //builder.Services.AddDbContext <DiscBudV1Context> (options =>
-            //options.UseSqlServer(connectionString));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

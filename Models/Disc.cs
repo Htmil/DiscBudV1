@@ -12,7 +12,7 @@ namespace DiscBudV1.Models
         public double? Turn { get; set; }
         public double? Fade { get; set; }
         public string? Characteristics { get; set; }
-        public string UserId { get; set; }
-        public DiscBudV1User User { get; set; }
+        public string UserId { get; set; } // Foreign key userModel
+        public DiscBudV1User User { get; set; } 
     }
 }

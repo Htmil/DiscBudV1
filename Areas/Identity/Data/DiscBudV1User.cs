@@ -8,7 +8,7 @@ using DiscBudV1.Models;
 namespace DiscBudV1.Areas.Identity.Data;
 
 // Add profile data for application users by adding properties to the DiscBudV1User class
-public class DiscBudV1User : IdentityUser
+public class DiscBudV1User : IdentityUser // 1TM 
 {
     public List<Disc> Discs { get; set; }
     public List<Invdisc> invdiscs { get; set; }

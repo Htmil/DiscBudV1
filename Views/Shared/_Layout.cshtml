@@ -34,7 +34,7 @@
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Discs" asp-action="Index">Manage Discs</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Discs" asp-action="Index">All Discs</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-controller="InvDiscs" asp-action="Index">Inventory</a>
@@ -55,7 +55,7 @@
         </main>
     </div>
 
-    <footer class="footer text-light navBg pt-3 mt-3">
+    <footer class="footer text-light navBg pt-3 mt-3" style="line-height: 30px;">
         <div class="container d-flex justify-content-between">
             <p>&copy; 2024 - DiscBud - </p> 
             <div class="d-inline-flex">

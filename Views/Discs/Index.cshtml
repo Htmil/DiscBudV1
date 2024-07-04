@@ -12,7 +12,7 @@
 }
 
 <div class="container p-5 mainContainer ">
-    <h1 class="fw-bold mb-3">Disc Manager</h1>
+    <h1 class="fw-bold mb-3">All Discs</h1>
     <form id="searchForm" class="mb-3">
         <div class="form-group mr-2 mb-3">
             <input type="text"
@@ -25,7 +25,6 @@
             <button type="button" class="btn btn-outline-primary filter-btn" data-type="driver">Driver</button>
             <button type="button" class="btn btn-outline-primary filter-btn" data-type="midrange">Midrange</button>
             <button type="button" class="btn btn-outline-primary filter-btn" data-type="putter">Putter</button>
-            <!-- Add more buttons as needed for each disc type -->
         </div>
     </form>
     @if (User.IsInRole("Admin"))                   
@@ -56,11 +55,11 @@
                             }
                         </h5>
                         <p class="card-text">
-                            <!-- Display basic information here -->
                             @Html.DisplayFor(modelItem => item.Speed) / @Html.DisplayFor(modelItem => item.Glide) / @Html.DisplayFor(modelItem => item.Turn) / @Html.DisplayFor(modelItem => item.Fade)
                         </p>
                         <!-- Toggle button for details -->
-                        <div class="d-flex">
+                        <div class="d-flex justify-content-between w-100">
+                            <div class="d-flex">
                             <button class="btn btn-info btn-sm toggle-details" data-toggle="collapse" data-target="#details-@item.Id">Details</button>
                             <!-- Edit and Delete buttons -->
                             <form action="@Url.Action("AddDiscToInv", "Invdiscs")" method="post">
@@ -75,13 +74,15 @@
                                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary btn-sm">
                                     <i class="fa-regular fa-pen-to-square"></i>
                                 </a>
+                            }
+                            </div>
+                            @if (User.IsInRole("Admin"))
+                            {
                                 <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">
                                     <i class="fa-solid fa-trash-can"></i>
                                 </a>
                             }
-                            
-                            @* <a class="btn btn-danger btn-sm">Remove from inv</a> *@
-                            </div>
+                        </div>
                     </div>
                     <!-- Details section (initially collapsed) -->
                     <div class="card-footer collapse" id="details-@item.Id">

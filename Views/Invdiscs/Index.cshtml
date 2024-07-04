@@ -61,6 +61,7 @@
                            @Html.DisplayFor(modelItem => item.Disc.Speed) / @Html.DisplayFor(modelItem => item.Disc.Glide) / @Html.DisplayFor(modelItem => item.Disc.Turn) / @Html.DisplayFor(modelItem => item.Disc.Fade)
                        </p>
                         <!-- Toggle button for details -->
+                   <div class="d-flex justify-content-between w-100">
                        <div class="d-flex">
                            <button class="btn btn-info btn-sm toggle-details" data-toggle="collapse" data-target="#details-@item.Disc.Id">Details</button>
                            <form action="@Url.Action("AddDiscToBag", "Bags")" method="post">
@@ -70,9 +71,16 @@
                                    Bag
                                </button>
                            </form>
+                           @if (User.IsInRole("Admin"))
+                            {
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary btn-sm">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                            </a>
+                            }
+                       </div>
                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">
                                     <i class="fa-solid fa-trash-can"></i>
-                           </a>
+                           </a>  
                        </div>
                    </div>
                    <div class="card-footer collapse" id="details-@item.Disc.Id">
