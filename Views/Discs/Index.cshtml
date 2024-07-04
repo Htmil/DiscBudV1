@@ -31,7 +31,7 @@
     @if (User.IsInRole("Admin"))                   
     {
     <p>
-        <a asp-action="Create" class="btn btn-primary">Create New Disc</a>
+        <a asp-action="Create" class="btn btn-sm btn-primary">Create New Disc</a>
     </p>
     }
     <div class="row" id="discsContainer">
@@ -44,15 +44,15 @@
                             @Html.DisplayFor(modelItem => item.Name)
                             @if (item.Characteristics.Contains("Stable"))
                             {
-                                <span>&#x2191;</span> <!-- Up arrow for stable discs -->
+                                <i class="fa-solid fa-arrow-up-long" style="color: #03b0d2; scale:0.8;"></i> <!-- Up arrow for stable discs -->
                             }
                             else if (item.Characteristics.Contains("Overstable") || item.Characteristics.Contains("Slightly overstable"))
                             {
-                                <span>&#x2192;</span> <!-- Right arrow for overstable discs -->
+                                <i class="fa-solid fa-arrow-right-long" style="color: #03b0d2; scale:0.8;"></i> <!-- Right arrow for overstable discs -->
                             }
                             else if (item.Characteristics.Contains("Understable") || item.Characteristics.Contains("Slightly understable"))
                             {
-                                <span>&#x2190;</span> <!-- Left arrow for understable discs -->
+                                <i class="fa-solid fa-arrow-left-long" style="color: #03b0d2; scale:0.8;"></i> <!-- Left arrow for understable discs -->
                             }
                         </h5>
                         <p class="card-text">
@@ -63,15 +63,23 @@
                         <div class="d-flex">
                             <button class="btn btn-info btn-sm toggle-details" data-toggle="collapse" data-target="#details-@item.Id">Details</button>
                             <!-- Edit and Delete buttons -->
-                            @if (User.IsInRole("Admin"))
-                            {
-                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary btn-sm">Edit</a>
-                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
-                            }
                             <form action="@Url.Action("AddDiscToInv", "Invdiscs")" method="post">
                                 <input type="hidden" name="discId" value="@item.Id" />
-                                <button type="submit" class="btn btn-success btn-sm">Add to inv</button>
-                            </form>
+                                <button type="submit" class="btn btn-success btn-sm">
+                                    <i class="fa-solid fa-plus"></i>
+                                    inv
+                                </button>
+                            </form>                            
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary btn-sm">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </a>
+                            }
+                            
                             @* <a class="btn btn-danger btn-sm">Remove from inv</a> *@
                             </div>
                     </div>
