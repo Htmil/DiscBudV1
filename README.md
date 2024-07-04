@@ -37,7 +37,6 @@ A big thank you to [Maged.H](https://github.com/MG777777) for guiding me through
 1. **Clone the Repository**
    ```sh
    git clone https://github.com/Htmil/DiscBudV1.git
-   cd asset-tracker
 2. **Install NuGet Packages**
   Install the required NuGet packages using the .NET CLI
   ```sh
