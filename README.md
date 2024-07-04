@@ -11,7 +11,7 @@ Say goodbye to the confusion and enjoy a more streamlined disc golf experience w
 
 This project was developed as part of an advanced postgraduate training course in Information Technology at Lexicon.
 
-A big thank you to [Maged.H](https://github.com/MG777777) for guiding me through this project, helping with databases, explaining, resolving issiues and making it possible for me to successfully complete the project.”
+A big thank you to [Maged.H](https://github.com/MG777777) for guiding me through this project, helping me with databases, explaining, resolving issiues and making it possible for me to successfully complete the project.
 
 ## Features
 
